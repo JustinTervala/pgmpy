@@ -76,6 +76,7 @@ class LinearGaussianCPD(BaseFactor):
         self.beta_vector = np.asarray(beta[1:])
 
         variables = [variable] + evidence
+        self.variables = variables
         super(LinearGaussianCPD, self).__init__(variables, pdf='gaussian',
                                                 mean=self.beta_vector,
                                                 covariance=self.variance)

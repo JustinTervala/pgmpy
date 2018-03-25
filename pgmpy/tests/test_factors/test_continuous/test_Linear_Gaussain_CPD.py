@@ -12,6 +12,7 @@ class TestLGCPD(unittest.TestCase):
         self.assertEqual(cpd1.variable, 'x')
         self.assertEqual(cpd1.beta_0, 0.23)
         self.assertEqual(cpd1.variance, 0.56)
+        self.assertEqual(cpd1.variables, ['x'])
 
         cpd2 = LinearGaussianCPD('y', [0.67, 1, 4.56, 8], 2,
                                  ['x1', 'x2', 'x3'])
@@ -19,6 +20,7 @@ class TestLGCPD(unittest.TestCase):
         self.assertEqual(cpd2.beta_0, 0.67)
         self.assertEqual(cpd2.variance, 2)
         self.assertEqual(cpd2.evidence, ['x1', 'x2', 'x3'])
+        self.assertEqual(cpd2.variables, ['y', 'x1', 'x2', 'x3'])
         np_test.assert_array_equal(cpd2.beta_vector, [1, 4.56, 8])
 
         self.assertRaises(ValueError, LinearGaussianCPD, 'x', [1, 1, 2], 2,
